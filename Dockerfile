@@ -1,4 +1,4 @@
-FROM mariadb/10.1
+FROM mariadb:10.1
 MAINTAINER RightCtrl <support@rightctrl.com>
 LABEL Vendor="RightCtrl"
 LABEL License=GPLv2
