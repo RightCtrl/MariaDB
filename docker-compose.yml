@@ -1,7 +1,8 @@
 version: '2'
 services:
   mariadb:
-    image: rightctrl/mariadb:10.1
+    #image: rightctrl/mariadb:10.1
+    image: mariad-galera
     #image: mariadb:10.1
     restart: always
 #    command: mysqld --innodb-buffer-pool-size=20M
@@ -14,7 +15,16 @@ services:
 #      - "MYSQL_USER=my_db_user"
 #      - "MYSQL_PASSWORD=my_db_user_passwd"
       - "MYSQL_ROOT_PASSWORD=123456"
+      - "WSREP_CLUSTER_ADDRESS=gcomm://192.168.11.253"
+      - "WSREP_PROVIDER_OPTIONS=ist.recv_addr=192.168.11.253"
+      - "WSREP_NODE_NAME=db1"
+      - "WSREP_NODE_ADDRESS=192.168.11.253"
+#      - "WSREP_SST_AUTH"
+      - "WSREP_SST_METHOD=rsync"
     ports:
-      - "3307:3306"
+      - "3306:3306"
+      - "4567:4567"
+      - "4568:4568"
+      - "4444:4444"
     mem_limit: 3g
     cpuset: 0,1
