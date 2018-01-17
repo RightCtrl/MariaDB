@@ -1,8 +1,7 @@
 version: '2'
 services:
   mariadb:
-    #image: rightctrl/mariadb:10.1
-    image: mariad-galera
+    image: rightctrl/mariadb:10.1
     #image: mariadb:10.1
     restart: always
 #    command: mysqld --innodb-buffer-pool-size=20M
