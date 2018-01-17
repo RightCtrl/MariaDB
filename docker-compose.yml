@@ -1,0 +1,19 @@
+version: '2'
+services:
+  mariadb:
+    image: rightctrl/mariadb:10.1
+    restart: always
+#    command: mysqld --innodb-buffer-pool-size=20M
+
+#    volumes:
+#      - "./mariadb:/var/lib/mysql:rw"
+#      - "./conf:/etc/mysql"
+    environment:
+#      - "MYSQL_DATABASE=my_db_name"
+#      - "MYSQL_USER=my_db_user"
+#      - "MYSQL_PASSWORD=my_db_user_passwd"
+      - "MYSQL_ROOT_PASSWORD=123456"
+    ports:
+      - "3307:3306"
+    mem_limit: 3g
+    cpuset: 0,1
