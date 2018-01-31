@@ -20,15 +20,24 @@ if [ -n "$WSREP_CLUSTER_ADDRESS" -a "$1" == 'mysqld' ]; then
 	innodb_locks_unsafe_for_binlog="1"
 
 	[galera]
+	# Galera Provider Configuration
 	wsrep_on="on"
 	wsrep_provider="${WSREP_PROVIDER:-/usr/lib/libgalera_smm.so}"
-	wsrep_provider_options="${WSREP_PROVIDER_OPTIONS}"
-	wsrep_cluster_address="${WSREP_CLUSTER_ADDRESS}"
+
+	# Galera Cluster Configuration
 	wsrep_cluster_name="${WSREP_CLUSTER_NAME:-my_wsrep_cluster}"
+	wsrep_cluster_address="${WSREP_CLUSTER_ADDRESS}"
+
+	# Galera Synchronization Configuration
+	wsrep_sst_method="${WSREP_SST_METHOD:-rsync}"
+
+	# Galera Node Configuration
 	wsrep_node_address="${WSREP_NODE_ADDRESS:-$(hostname -s)}"
 	wsrep_node_name="${WSREP_NODE_NAME:-$(hostname -s)}"
+
+	wsrep_provider_options="${WSREP_PROVIDER_OPTIONS}"
 	wsrep_sst_auth="${WSREP_SST_AUTH}"
-	wsrep_sst_method="${WSREP_SST_METHOD:-rsync}"
+
 	EOF
 
 	if [ -n "$WSREP_NODE_ADDRESS" ]; then
